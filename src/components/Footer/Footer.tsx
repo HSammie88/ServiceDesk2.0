@@ -4,13 +4,19 @@ import { ContextProvider } from "../Context/Context";
 import type { CSSType } from "../../types";
 
 export default function Footer() {
-  const {currentColors} = useContext(ContextProvider)!
+  const { currentColors } = useContext(ContextProvider)!;
 
-  const styleProvider: CSSType= {
-    "--bg-color": currentColors.headFoot,
-  }
+  const styleProvider: CSSType = {
+    backgroundColor: currentColors.headFoot,
+    color: currentColors.textColor,
+  };
 
   return (
-    <div style={styleProvider} className={style.container}></div>
-  )
+    <div style={styleProvider} className={style.container}>
+      <p>Created by HSammie88</p>
+      <a target="_blank" href="https://github.com/HSammie88/ServiceDesk2.0">
+        My Repo
+      </a>
+    </div>
+  );
 }

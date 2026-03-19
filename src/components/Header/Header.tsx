@@ -4,13 +4,21 @@ import { ContextProvider } from "../Context/Context";
 import type { CSSType } from "../../types";
 
 export default function Header() {
-  const {currentColors} = useContext(ContextProvider)!
+  const { currentColors } = useContext(ContextProvider)!;
 
   const styleProvider: CSSType = {
-    "--bg-color": currentColors.headFoot,
-  }
-  
+    backgroundColor: currentColors.headFoot,
+    color: currentColors.textColor,
+  };
+
   return (
-    <div style={styleProvider} className={style.container}></div>
-  )
+    <div style={styleProvider} className={style.container}>
+      <div className={style["logo-container"]}>
+        <h1>ServiceDesk 2.0</h1>
+        <h5>by HSammie88</h5>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 }
