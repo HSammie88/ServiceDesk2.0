@@ -1,0 +1,10 @@
+{
+    "light": {
+      "main": "#FFFFFF",
+      "headFoot": "#333333"
+    },
+    "dark": {
+      "main": "#1A1A1A",
+      "headFoot": "#000000"
+    }
+}
