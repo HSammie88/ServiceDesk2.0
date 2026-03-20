@@ -2,11 +2,19 @@
   "light": {
     "main": "#FFFFFF",
     "headFoot": "#333333",
-    "textColor": "#FFFFFF"
+    "textColor": "#FFFFFF",
+    "button": {
+      "background": "#5E0006",
+      "hoveredBackground": "#9B0F06"
+    }
   },
   "dark": {
     "main": "#1A1A1A",
     "headFoot": "#000000",
-    "textColor": "#FFFFFF"
+    "textColor": "#FFFFFF",
+    "button": {
+      "background": "#5E0006",
+      "hoveredBackground": "#9B0F06"
+    }
   }
 }

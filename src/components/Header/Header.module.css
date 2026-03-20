@@ -5,6 +5,7 @@
   grid-template-columns: 1fr 8fr 1fr;
   justify-content: center;
   align-items: center;
+  color: var(--text-color);
 }
 
 .logo-container {
@@ -21,5 +22,44 @@
   & h5 {
     font-size: 10px;
     text-align: end;
+  }
+}
+
+.user-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+
+  & svg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  & .settings-container{
+    color: var(--text-color);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 200px;
+    min-height: 100px;
+    background-color: var(--settings-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    display: grid;
+    grid-template-rows: 5fr 2fr;
+
+    & button{
+      font-size: 20px;
+      cursor: pointer;
+      background-color: var(--button-bg);
+      transition: background-color .1s;
+      color: var(--text-color);
+      border-radius: 0 0 10px 10px;
+    }
   }
 }
