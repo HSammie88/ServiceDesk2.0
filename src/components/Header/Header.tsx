@@ -5,14 +5,17 @@ import type { CSSType } from "../../types";
 import UserProfile from "./UserProfile";
 
 export default function Header() {
-  const { currentColors, currentUser } = useContext(ContextProvider)!;
-  const [buttonHovered, setButtonHovered] = useState(false)
+  const { currentColors, currentUser, setCurrentUser, setIsDark, isDark } =
+    useContext(ContextProvider)!;
+  const [buttonHovered, setButtonHovered] = useState(false);
 
   const styleProvider: CSSType = {
     backgroundColor: currentColors.headFoot,
     "--text-color": currentColors.textColor,
     "--settings-bg": currentColors.headFoot,
-    "--button-bg": buttonHovered ? currentColors.button.hoveredBackground : currentColors.button.background
+    "--button-bg": buttonHovered
+      ? currentColors.button.hoveredBackground
+      : currentColors.button.background,
   };
 
   return (
@@ -23,7 +26,18 @@ export default function Header() {
       </div>
       <div></div>
       <div className={style["user-container"]}>
-        {!currentUser ? <UserProfile setButtonHovered={setButtonHovered} style={style}/> : null}
+        {currentUser ? (
+          <>
+            <p>{`Greetings, ${currentUser}`}</p>
+            <UserProfile
+              isDark={isDark}
+              setIsDark={setIsDark}
+              setCurrentUser={setCurrentUser}
+              setButtonHovered={setButtonHovered}
+              style={style}
+            />
+          </>
+        ) : null}
       </div>
     </div>
   );

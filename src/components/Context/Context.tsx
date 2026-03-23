@@ -7,7 +7,7 @@ import {
 } from "react";
 import colors from "../../statics/colors.json";
 
-type TCurrentColors = typeof colors.light
+type TCurrentColors = typeof colors.light;
 interface IContextProps {
   children: ReactNode;
 }
@@ -15,6 +15,7 @@ interface IContextProps {
 interface IContextValues {
   currentUser: string;
   setCurrentUser: Dispatch<SetStateAction<string>>;
+  isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
   currentColors: TCurrentColors;
 }
@@ -29,6 +30,7 @@ function Context({ children }: IContextProps) {
   const contextValues: IContextValues = {
     currentUser,
     setCurrentUser,
+    isDark,
     setIsDark,
     currentColors,
   };

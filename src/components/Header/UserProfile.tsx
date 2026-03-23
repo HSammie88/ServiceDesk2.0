@@ -1,23 +1,74 @@
-import { CircleUser } from "lucide-react";
+import { CircleUser, SunMoon, type LucideIcon } from "lucide-react";
 import { useState, type Dispatch, type SetStateAction } from "react";
+import SettingsItem from "./SettingsItem";
 
-interface IUserProfileProps{
-    style: CSSModuleClasses;
-    setButtonHovered: Dispatch<SetStateAction<boolean>>
+interface IUserProfileProps {
+  style: CSSModuleClasses;
+  setButtonHovered: Dispatch<SetStateAction<boolean>>;
+  setCurrentUser: Dispatch<SetStateAction<string>>;
+  setIsDark: Dispatch<SetStateAction<boolean>>;
+  isDark: boolean;
 }
 
-export default function UserProfile({style, setButtonHovered}: IUserProfileProps){
-    const [settingsVisibility, setSettingsVisibility] = useState(false)
-    
-    const handleClick = () => setSettingsVisibility(!settingsVisibility)
-    
-    return <>
-        <CircleUser onClick={handleClick}/>
-        {settingsVisibility ? <div className={style["settings-container"]}>
-            <div>
+interface ISettingsItem {
+  Icon: LucideIcon;
+  action: () => void;
+  text: string;
+}
 
-            </div>
-            <button onMouseLeave={()=>setButtonHovered(false)} onMouseEnter={()=>setButtonHovered(true)}>Exit</button>
-        </div> : null}
+export default function UserProfile({
+  style,
+  setButtonHovered,
+  setCurrentUser,
+  setIsDark,
+  isDark,
+}: IUserProfileProps) {
+  const [settingsVisibility, setSettingsVisibility] = useState(false);
+
+  const handleClick = () => setSettingsVisibility(!settingsVisibility);
+
+  const handleThemeClick = () => {
+    setIsDark(!isDark);
+  };
+
+  const settingsItems: ISettingsItem[] = [
+    {
+      action: () => handleThemeClick(),
+      Icon: SunMoon,
+      text: "Change theme",
+    },
+  ];
+
+  return (
+    <>
+      <CircleUser onClick={handleClick} />
+      {settingsVisibility ? (
+        <div className={style["settings-container"]}>
+          <div className={style["settings-grid-container"]}>
+            {settingsItems.map((item, id) => {
+              return (
+                <SettingsItem
+                  key={id}
+                  Icon={item.Icon}
+                  style={style}
+                  text={item.text}
+                  action={item.action}
+                />
+              );
+            })}
+          </div>
+          <button
+            onClick={() => {
+              setCurrentUser("");
+              setButtonHovered(false);
+            }}
+            onMouseLeave={() => setButtonHovered(false)}
+            onMouseEnter={() => setButtonHovered(true)}
+          >
+            Exit
+          </button>
+        </div>
+      ) : null}
     </>
+  );
 }

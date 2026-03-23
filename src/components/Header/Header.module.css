@@ -25,7 +25,7 @@
   }
 }
 
-.user-container{
+.user-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -33,19 +33,19 @@
   align-items: center;
   padding: 10px;
   position: relative;
+  gap: 10px;
 
-  & svg{
+  & svg {
     width: 30px;
     height: 30px;
     cursor: pointer;
   }
 
-  & .settings-container{
+  & .settings-container {
     color: var(--text-color);
     position: absolute;
     top: 60px;
     right: 10px;
-    width: 200px;
     min-height: 100px;
     background-color: var(--settings-bg);
     border-radius: 10px;
@@ -53,11 +53,39 @@
     display: grid;
     grid-template-rows: 5fr 2fr;
 
-    & button{
+    & .settings-grid-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+
+      & .settings-item-container {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px 10px;
+        gap: 5px;
+        width: 100%;
+        text-align: start;
+
+        & svg {
+          width: 30px;
+          height: 30px;
+        }
+
+        & p {
+          font-size: 15px;
+        }
+      }
+    }
+
+    & button {
       font-size: 20px;
       cursor: pointer;
       background-color: var(--button-bg);
-      transition: background-color .1s;
+      transition: background-color 0.1s;
       color: var(--text-color);
       border-radius: 0 0 10px 10px;
     }
