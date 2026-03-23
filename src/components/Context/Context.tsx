@@ -4,6 +4,7 @@ import {
   useState,
   type ReactNode,
   type SetStateAction,
+  useEffect,
 } from "react";
 import colors from "../../statics/colors.json";
 
@@ -34,6 +35,10 @@ function Context({ children }: IContextProps) {
     setIsDark,
     currentColors,
   };
+
+  useEffect(()=>{
+    document.body.style.backgroundColor = currentColors.main
+  }, [currentColors.main])
 
   return (
     <ContextProvider.Provider value={contextValues}>

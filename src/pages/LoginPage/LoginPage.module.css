@@ -1,0 +1,70 @@
+.container {
+  width: 40%;
+  height: 30%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--page-color);
+
+  & h1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+    font-size: 30px;
+    background-color: color-mix(in srgb, var(--page-color), black 20%);
+    border-radius: 10px 0 0 10px;
+  }
+
+  & .auth-container {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 0.3fr;
+    grid-template-rows: 1fr 1fr;
+    height: 20%;
+
+    & input {
+      font-size: 25px;
+      padding: 0 10px;
+      border-radius: 10px;
+      border: 0.5px solid var(--input-border);
+      background-color: var(--input-bg);
+      color: var(--input-text);
+      width: 90%;
+
+      &::placeholder {
+        color: var(--input-placeholder);
+      }
+    }
+
+    & button {
+      width: 80px;
+      height: 80px;
+      grid-column: 2;
+      grid-row: 1/3;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: none;
+      margin: 2px;
+      background-color: var(--button-bg);
+      transition: background-color 0.2s, transform .2s;
+
+      &:hover{
+        transform: scale(1.1);
+      }
+
+      & svg {
+        height: 70px;
+        width: 70px;
+      }
+    }
+  }
+}
