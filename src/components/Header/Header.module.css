@@ -25,6 +25,30 @@
   }
 }
 
+.navigation-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+
+  & a{
+    display: flex;
+    min-width: 80px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-bg);
+    transition: background-color .2s;
+    font-size: 20px;
+    padding: 0 10px;
+
+    &:hover{
+      background-color: var(--button-hovered-bg);
+    }
+  }
+}
+
 .user-container {
   width: 100%;
   height: 100%;
@@ -84,7 +108,7 @@
     & button {
       font-size: 20px;
       cursor: pointer;
-      background-color: var(--button-bg);
+      background-color: var(--button-exit-bg);
       transition: background-color 0.1s;
       color: var(--text-color);
       border-radius: 0 0 10px 10px;

@@ -4,15 +4,25 @@
     "headFoot": "#333333",
     "textColor": "#FFFFFF",
     "button": {
+      "background": "#333333",
+      "hoveredBackground": "#555555",
+      "text": "#FFFFFF"
+    },
+    "exitButton": {
       "background": "#5E0006",
       "hoveredBackground": "#9B0F06"
     }
   },
   "dark": {
-    "main": "#1A1A1A",
-    "headFoot": "#000000",
-    "textColor": "#FFFFFF",
+    "main": "#18191a",
+    "headFoot": "#242526",
+    "textColor": "#e4e6eb",
     "button": {
+      "background": "#3a3b3c",
+      "hoveredBackground": "#4e4f50",
+      "text": "#ffffff"
+    },
+    "exitButton": {
       "background": "#5E0006",
       "hoveredBackground": "#9B0F06"
     }

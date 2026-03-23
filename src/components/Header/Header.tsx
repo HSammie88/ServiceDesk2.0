@@ -3,6 +3,12 @@ import style from "./Header.module.css";
 import { ContextProvider } from "../Context/Context";
 import type { CSSType } from "../../types";
 import UserProfile from "./UserProfile";
+import { NavLink } from "react-router-dom";
+
+interface INavigationLinks{
+  text: string,
+  destination: string,
+}
 
 export default function Header() {
   const { currentColors, currentUser, setCurrentUser, setIsDark, isDark } =
@@ -13,10 +19,23 @@ export default function Header() {
     backgroundColor: currentColors.headFoot,
     "--text-color": currentColors.textColor,
     "--settings-bg": currentColors.headFoot,
-    "--button-bg": buttonHovered
-      ? currentColors.button.hoveredBackground
-      : currentColors.button.background,
+    "--button-exit-bg": buttonHovered
+      ? currentColors.exitButton.hoveredBackground
+      : currentColors.exitButton.background,
+    "--button-bg": currentColors.button.background,
+    "--button-hovered-bg": currentColors.button.hoveredBackground
   };
+
+  const navigationLinks: INavigationLinks[] = [
+    {
+      destination: "/",
+      text: "My tickets"
+    },
+    {
+      destination: "/",
+      text: "Create ticket"
+    }
+  ]
 
   return (
     <div style={styleProvider} className={style.container}>
@@ -24,7 +43,13 @@ export default function Header() {
         <h1>ServiceDesk 2.0</h1>
         <h5>by HSammie88</h5>
       </div>
-      <div></div>
+      <div className={style["navigation-container"]}>
+        {currentUser ? (
+          <>
+            {navigationLinks.map((item, id) => <NavLink to={item.destination} key={id}>{item.text}</NavLink>)}
+          </>
+        ): null}
+      </div>
       <div className={style["user-container"]}>
         {currentUser ? (
           <>
