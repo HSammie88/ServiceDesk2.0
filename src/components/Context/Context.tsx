@@ -7,6 +7,7 @@ import {
   useEffect,
 } from "react";
 import colors from "../../statics/colors.json";
+import {InitDB} from "../../statics/DBQueries";
 
 type TCurrentColors = typeof colors.light;
 interface IContextProps {
@@ -39,6 +40,8 @@ function Context({ children }: IContextProps) {
   useEffect(()=>{
     document.body.style.backgroundColor = currentColors.main
   }, [currentColors.main])
+
+  useEffect(()=>InitDB(), [])
 
   return (
     <ContextProvider.Provider value={contextValues}>
