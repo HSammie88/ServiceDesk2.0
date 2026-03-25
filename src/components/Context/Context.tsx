@@ -9,6 +9,7 @@ import {
 import colors from "../../statics/colors.json";
 import {InitDB} from "../../statics/DBQueries";
 import Message from "../FunctionalComponents/Message/Message";
+import type { IUser } from "../../types";
 
 type TCurrentColors = typeof colors.light;
 interface IContextProps {
@@ -16,8 +17,8 @@ interface IContextProps {
 }
 
 interface IContextValues {
-  currentUser: string;
-  setCurrentUser: Dispatch<SetStateAction<string>>;
+  currentUser: IUser | undefined;
+  setCurrentUser: Dispatch<SetStateAction<IUser | undefined>>;
   isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
   currentColors: TCurrentColors;
@@ -27,7 +28,7 @@ interface IContextValues {
 const ContextProvider = createContext<IContextValues | undefined>(undefined);
 
 function Context({ children }: IContextProps) {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState<IUser>();
   const [isDark, setIsDark] = useState(false);
   const [message, setMessage] = useState<{text: string, type: 'error' | 'success' | 'warning'} | null>(null)
   const currentColors: TCurrentColors = isDark ? colors.dark : colors.light;

@@ -1,11 +1,12 @@
 import { CircleUser, SunMoon, type LucideIcon } from "lucide-react";
 import { useState, type Dispatch, type SetStateAction } from "react";
 import SettingsItem from "./SettingsItem";
+import type { IUser } from "../../types";
 
 interface IUserProfileProps {
   style: CSSModuleClasses;
   setButtonHovered: Dispatch<SetStateAction<boolean>>;
-  setCurrentUser: Dispatch<SetStateAction<string>>;
+  setCurrentUser: Dispatch<SetStateAction<IUser | undefined>>;
   setIsDark: Dispatch<SetStateAction<boolean>>;
   isDark: boolean;
 }
@@ -59,7 +60,7 @@ export default function UserProfile({
           </div>
           <button
             onClick={() => {
-              setCurrentUser("");
+              setCurrentUser(undefined);
               setButtonHovered(false);
             }}
             onMouseLeave={() => setButtonHovered(false)}

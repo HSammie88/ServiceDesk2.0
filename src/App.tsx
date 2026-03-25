@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import MainPage from "./pages/MainPage/MainPage";
 import MyTickets from "./pages/MyTickets/MyTickets";
 import NewTicket from "./pages/NewTicket/NewTicket";
+import ProtectedRoute from "./components/ProtectedRoute";
+import GuestRoute from "./components/GuestRoute";
 
 const router = createBrowserRouter([
   {
@@ -14,13 +15,16 @@ const router = createBrowserRouter([
     errorElement: <></>,
     children: [
       {
-        index: true,
-        element: <LoginPage/>,
+        element: <GuestRoute/>,
+        children: [{
+          index: true,
+          element: <LoginPage/>
+        }]
       },
       {
         element: <ProtectedRoute />,
         children: [{
-          path: "/mainPage",
+          path: "/",
           element: <MainPage/>
         },
         {

@@ -28,11 +28,11 @@ export default function Header() {
 
   const navigationLinks: INavigationLinks[] = [
     {
-      destination: "/",
+      destination: "/myTickets",
       text: "My tickets"
     },
     {
-      destination: "/",
+      destination: "/newTicket",
       text: "Create ticket"
     }
   ]
@@ -53,7 +53,7 @@ export default function Header() {
       <div className={style["user-container"]}>
         {currentUser ? (
           <>
-            <p>{`Greetings, ${currentUser}`}</p>
+            <p>{`Greetings, ${currentUser.first_name}`}</p>
             <UserProfile
               isDark={isDark}
               setIsDark={setIsDark}
