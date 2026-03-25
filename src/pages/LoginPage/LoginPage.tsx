@@ -5,7 +5,7 @@ import type { CSSType } from "../../types";
 import { LogIn } from "lucide-react";
 
 export default function LoginPage() {
-  const { currentColors } = useContext(ContextProvider)!;
+  const { currentColors, showMessage } = useContext(ContextProvider)!;
   const [isHovered, setIsHovered] = useState(false);
 
   const styleProvider: CSSType = {
@@ -20,7 +20,7 @@ export default function LoginPage() {
     "--input-placeholder": currentColors.input.placeholder,
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {showMessage('Ошибка авторизации, ID не существует', "error")};
 
   return (
     <div style={styleProvider} className={style.container}>

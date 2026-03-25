@@ -23,6 +23,20 @@
       "border": "#777777",
       "text": "#FFFFFF",
       "placeholder": "#cccccc"
+    },
+    "statusColors": {
+      "error": {
+        "background": "#C62828",
+        "text": "#FFFFFF"
+      },
+      "success": {
+        "background": "#2E7D32",
+        "text": "#FFFFFF"
+      },
+      "warning": {
+        "background": "#EF6C00",
+        "text": "#FFFFFF"
+      }
     }
   },
   "dark": {
@@ -49,6 +63,20 @@
       "border": "#4d4f51",
       "text": "#ffffff",
       "placeholder": "#b0b3b8"
+    },
+    "statusColors": {
+      "error": {
+        "background": "#C62828",
+        "text": "#FFFFFF"
+      },
+      "success": {
+        "background": "#2E7D32",
+        "text": "#FFFFFF"
+      },
+      "warning": {
+        "background": "#EF6C00",
+        "text": "#FFFFFF"
+      }
     }
   }
 }

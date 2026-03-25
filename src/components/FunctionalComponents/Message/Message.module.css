@@ -1,0 +1,15 @@
+.container{
+    width: 250px;
+    height: 110px;
+    position: fixed;
+    right: 5px;
+    bottom: 55px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 20px;
+    text-align: center;
+}

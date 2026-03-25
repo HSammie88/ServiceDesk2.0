@@ -1,12 +1,14 @@
 interface IDepartment {
   depart_id: number;
   depart_name: string;
+  deleted: boolean;
 }
 
 interface IPosition {
   position_id: number;
   position_name: string;
   depart_id: number;
+  deleted: boolean;
 }
 
 interface IUser {
@@ -19,6 +21,7 @@ interface IUser {
   depart_id: number;
   position_id: number;
   user_is_admin: boolean;
+  deleted: boolean;
 }
 
 export { type IDepartment, type IPosition, type IUser };

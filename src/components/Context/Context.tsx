@@ -8,6 +8,7 @@ import {
 } from "react";
 import colors from "../../statics/colors.json";
 import {InitDB} from "../../statics/DBQueries";
+import Message from "../FunctionalComponents/Message/Message";
 
 type TCurrentColors = typeof colors.light;
 interface IContextProps {
@@ -20,6 +21,7 @@ interface IContextValues {
   isDark: boolean;
   setIsDark: Dispatch<SetStateAction<boolean>>;
   currentColors: TCurrentColors;
+  showMessage: (text: string, type?: "error" | "success" | "warning") => void
 }
 
 const ContextProvider = createContext<IContextValues | undefined>(undefined);
@@ -27,14 +29,21 @@ const ContextProvider = createContext<IContextValues | undefined>(undefined);
 function Context({ children }: IContextProps) {
   const [currentUser, setCurrentUser] = useState("");
   const [isDark, setIsDark] = useState(false);
+  const [message, setMessage] = useState<{text: string, type: 'error' | 'success' | 'warning'} | null>(null)
   const currentColors: TCurrentColors = isDark ? colors.dark : colors.light;
 
+  const showMessage = (text: string, type: 'error' | 'success' | 'warning' = 'error') =>{
+    setMessage({text, type})
+    setTimeout(()=>setMessage(null), 5000)
+  }
+  
   const contextValues: IContextValues = {
     currentUser,
     setCurrentUser,
     isDark,
     setIsDark,
     currentColors,
+    showMessage,
   };
 
   useEffect(()=>{
@@ -46,6 +55,7 @@ function Context({ children }: IContextProps) {
   return (
     <ContextProvider.Provider value={contextValues}>
       {children}
+      {message && <Message key={message.text} text={message.text} notificationType={message.type}/>}
     </ContextProvider.Provider>
   );
 }
