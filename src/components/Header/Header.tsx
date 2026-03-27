@@ -47,6 +47,10 @@ export default function Header() {
         {currentUser ? (
           <>
             {navigationLinks.map((item, id) => <NavLink to={item.destination} key={id}>{item.text}</NavLink>)}
+            {currentUser && currentUser.user_is_admin ? <>
+            <NavLink to={"/users"}>Users</NavLink>
+            <NavLink to={"/allTickets"}>All tickets</NavLink>
+            </>: null}
           </>
         ): null}
       </div>

@@ -7,6 +7,7 @@ import MyTickets from "./pages/MyTickets/MyTickets";
 import NewTicket from "./pages/NewTicket/NewTicket";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuestRoute from "./components/GuestRoute";
+import UsersPage from "./pages/UsersPage/UsersPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         {
           path: "/newTicket",
           element: <NewTicket/>
+        },
+        {
+          path: "/users",
+          element: <UsersPage/>
         }
       ],
       },
