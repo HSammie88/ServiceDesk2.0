@@ -4,6 +4,7 @@
     "headFoot": "#333333",
     "window": "#444444",
     "windowItem": "#555555",
+    "transparentWindow": "rgba(68, 68, 68, 0.7)",
     "textColor": "#FFFFFF",
     "button": {
       "background": "#333333",
@@ -45,6 +46,7 @@
     "headFoot": "#242526",
     "window": "#2f3031",
     "windowItem": "#3a3b3c",
+    "transparentWindow": "rgba(47, 48, 49, 0.7)",
     "textColor": "#e4e6eb",
     "button": {
       "background": "#3a3b3c",

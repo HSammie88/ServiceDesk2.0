@@ -13,6 +13,7 @@ interface IBaseQueries<T, IDType = number> {
   read: () => Promise<T[]>;
   readOne: (id: IDType) => Promise<T>;
   update: (id: IDType, update: Partial<T>) => Promise<void>;
+  softRemove: (id: IDType) => Promise<void>;
   remove: (id: IDType) => Promise<void>;
 }
 
@@ -34,7 +35,7 @@ function InitDB() {
   });
 }
 
-function QueriesBuilder<T>(table: string, idKey: keyof T) {
+function QueriesBuilder<T extends { deleted: boolean }>(table: string, idKey: keyof T) {
   const _read = async (): Promise<T[]> => {
     try {
       const data = JSON.parse(localStorage.getItem(table)!);
@@ -82,6 +83,18 @@ function QueriesBuilder<T>(table: string, idKey: keyof T) {
         throw err;
       }
     },
+    softRemove: async (id: number) => {
+      try {
+        const localData = await _read()
+        const updatedData = localData.map(item => item[idKey] === id ? { ...item, deleted: !item.deleted } : item)
+        const isFound = localData.some(item => item[idKey] === id)
+        if (!isFound) throw new Error("ID не найден")
+        localStorage.setItem(table, JSON.stringify(updatedData))
+      } catch (err) {
+        console.error("Ошибка мягкого удаления: ", err)
+        throw err
+      }
+    },
     remove: async (id: number) => {
       try {
         const localData = await _read();
@@ -124,18 +137,18 @@ const CommentQueries: IBaseQueries<IComment> = QueriesBuilder(
 );
 
 const UserQueries = {
-    ...BaseUserQueries,
-    login: async(login: string, password: string): Promise<IUser>=>{
-        try{
-            const users = await BaseUserQueries.read()
-            const found = users.find(item => item.user_login === login && item.user_password === password)
-            if(!found) throw new Error("Неверные учетные данные")
-            return found
-        }catch(err){
-            console.error("Ошибка авторизации: ",err)
-            throw err
-        }
+  ...BaseUserQueries,
+  login: async (login: string, password: string): Promise<IUser> => {
+    try {
+      const users = await BaseUserQueries.read()
+      const found = users.find(item => item.user_login.toLowerCase() === login.toLowerCase() && item.user_password === password)
+      if (!found) throw new Error("Неверные учетные данные")
+      return found
+    } catch (err) {
+      console.error("Ошибка авторизации: ", err)
+      throw err
     }
+  }
 }
 
 function createFirstUser(currentTable: string) {

@@ -4,38 +4,50 @@ import { ContextProvider } from '../../components/Context/Context'
 import type { CSSType, IUser } from '../../types'
 import { UserQueries } from '../../statics/DBQueries'
 import UserCard from './UserCard'
+import SelectedUser from './SelectedUser'
 
-export default function UsersPage(){
-    const {currentColors, showMessage} = useContext(ContextProvider)!
+export default function UsersPage() {
+    const { currentColors, showMessage } = useContext(ContextProvider)!
     const [users, setUsers] = useState<IUser[]>([])
+    const [selectedUser, setSelectedUser] = useState<IUser | undefined>()
 
     const styleProvider: CSSType = {
         "--main-bg": currentColors.window,
         "--item-bg": currentColors.windowItem,
         color: currentColors.textColor,
+        "--pointer-event": selectedUser ? "none" : "all",
+        "--inputs-color": currentColors.input.background,
+        "--inputs-text-color": currentColors.input.text,
+        "--inputs-border": `1px solid ${currentColors.input.border}`
     }
 
-    const getUsers = async() =>{
-        try{
+    const getUsers = async () => {
+        try {
             const dbUsers = await UserQueries.read()
-            if(!dbUsers) throw new Error('Ошибка загрузки пользователей')
+            if (!dbUsers) throw new Error('Ошибка загрузки пользователей')
             setUsers(dbUsers)
-        }catch(err){
-            if(err instanceof Error)
-            showMessage(err.message, 'error')
+        } catch (err) {
+            if (err instanceof Error)
+                showMessage(err.message, 'error')
         }
     }
 
-    useEffect(()=>{
-        getUsers()
-    },[])
-    
+    const selectUser = (user: IUser | undefined) => {
+        setSelectedUser(user)
+    }
+
+    useEffect(() => {
+        if (!selectedUser)
+            getUsers()
+    }, [selectedUser])
+
     return (
         <div style={styleProvider} className={style.container}>
-            {users?<>
+            {users.length > 0 ? <>
                 <div></div>
-                {users.map((item, id)=><UserCard fullName={`${item.last_name} ${item.first_name[0]}.${item.surname ? item.surname[0]+'.': ""}`} departID={item.depart_id} isDeleted={item.deleted} userLogin={item.user_login} style={style} key={id}/>)}
+                {users.map(item => <UserCard selectUser={selectUser} user={item} style={style} key={`${item.user_id}_${item.depart_id}`} />)}
             </> : null}
+            {selectedUser ? <SelectedUser style={style} user={selectedUser} selectUser={selectUser} /> : null}
         </div>
     )
 }
