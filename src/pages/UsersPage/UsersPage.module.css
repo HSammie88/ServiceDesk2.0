@@ -7,32 +7,111 @@
     width: 95%;
     min-height: 95%;
     display: flex;
+    flex-direction: column;
     justify-content: start;
     align-items: start;
     flex-wrap: wrap;
     padding: 20px;
     border-radius: 20px;
-    display: relative;
+    position: relative;
 
-    & .user-card {
-        background-color: var(--item-bg);
-        width: 10%;
-        min-height: 200px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: scale .2s;
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-        text-align: center;
+    & .filter-container{
+        display: grid;
+        grid-template-rows: 2fr 1fr;
         align-items: center;
-        pointer-events: var(--pointer-event);
-        margin: 10px;
+        width: 100%;
 
-        &:hover {
-            scale: 1.05;
+        & .searchbar-container{
+            display: grid;
+            grid-template-columns: 10fr .5fr;
+
+            & input{
+                font-size: 30px;
+                border: var(--inputs-border);
+                border-right: none;
+                color: var(--inputs-text-color);
+                background-color: var(--inputs-color);
+                padding: 0 10px;
+                border-radius: 10px 0 0 10px;
+                height: 100%;
+
+                &::placeholder{
+                color: var(--inputs-placeholder-color);
+                }
+            }
+
+            & button{
+                height: 100%;
+                color: var(--button-text);
+                background-color: var(--button-bg);
+                cursor: pointer;
+                border: var(--inputs-border);
+                border-left: none;
+                border-radius: 0 10px 10px 0;
+                font-size: 20px;
+
+                transition: background-color .3s;
+
+                &:hover{
+                    background-color: var(--button-hover-bg);
+                }
+            }
+        }
+
+        & .filter-buttons-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & button{
+                border: var(--inputs-border);
+                min-width: 200px;
+                font-size: 15px;
+                cursor: pointer;
+                color: var(--button-text);
+                background-color: var(--button-bg);
+                transition: background-color .1s;
+
+                &:hover{
+                    background-color: var(--button-hover-bg);
+                }
+            }
+
+            & button:first-child{
+                border-radius: 10px 0 0 10px;
+            }
+
+            & button:last-child{
+                border-radius: 0 10px 10px 0;
+            }
+        }
+    }
+
+    & .cards-container{
+        display: flex;
+        width: 100%;
+        min-height: 100%;
+        
+        & .user-card {
+            background-color: var(--item-bg);
+            width: 10%;
+            min-height: 200px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: scale .2s;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+            align-items: center;
+            pointer-events: var(--pointer-event);
+            margin: 10px;
+
+            &:hover {
+                scale: 1.05;
+            }
         }
     }
 
